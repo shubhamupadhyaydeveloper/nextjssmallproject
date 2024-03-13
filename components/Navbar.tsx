@@ -4,7 +4,7 @@ import { FaSun } from "react-icons/fa";
 
 const Navbar = () => {
   const isAdmin:boolean = true
-  const session:boolean = true
+  const session:boolean = false
   return (
     <div className='flex p-4 text-white bg-black justify-between '>
       <div className='font-bold text-xl pl-16'>

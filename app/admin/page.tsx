@@ -1,5 +1,5 @@
 import React from 'react'
-import { getData, addData } from '@/lib/data';
+import { getData} from '@/lib/data';
 interface User {
     id: string,
     username: string,
@@ -17,13 +17,6 @@ const Adminpage = async () => {
         <div className='flex justify-evenly gap-10 p-5'>
             <div>
                 <h1 className='text-xl font-semibold'>Hi i am admin of this website</h1>
-
-                <form action={addData} className='flex flex-col gap-5 mt-10'>
-                    <input type="text" name='username' placeholder='enter your name' />
-                    <input type="email" name='email' placeholder='enter your email' />
-                    <input type="password" name='password' placeholder='password' />
-                    <button type='submit' className='bg-black text-white text-md p-2 rounded-sm'>Sumbit</button>
-                </form>
             </div>
 
             <div className='flex flex-col'>

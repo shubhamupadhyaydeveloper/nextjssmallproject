@@ -6,26 +6,29 @@ import {
 import { useRouter } from "next/navigation"
 
 interface UserTableProps {
-    post: {
-        id: number,
-        userId: number,
-        title: string,
-        body: string
+    user: {
+        id: string,
+        username: string,
+        email: string,
+        isAdmin: boolean,
+        img: string,
+        createdAt: Date,
+        updateAt: Date
     }
 }
 
-const UserTable = ({ post }: UserTableProps) => {
+const UserTable = ({ user }: UserTableProps) => {
     const router = useRouter()
     const handleclick = () => {
-       router.push(`/user/${post.userId}`)
+        router.push(`/user/${user.id}`)
     }
-    
+
     return (
         <TableRow onClick={handleclick} className="cursor-pointer">
-            <TableCell>{post.userId}</TableCell>
-            <TableCell>{post.id}</TableCell>
-            <TableCell>{post.title}</TableCell>
-            <TableCell className="text-right">{post.body.substring(0,100)}</TableCell>
+            <TableCell>{user.username}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.isAdmin ? "Yes" : "No"}</TableCell>
+            <TableCell className="text-right">{user.createdAt.toString().slice(5,16)}</TableCell>
         </TableRow>
     )
 }

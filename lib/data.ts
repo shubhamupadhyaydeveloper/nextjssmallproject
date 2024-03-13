@@ -1,10 +1,10 @@
+'use server'
 import { revalidatePath } from "next/cache";
 import prisma from "./client";
 
 // add data
 // @ts-ignore
 export async function addData(data) {
-    'use server'
     revalidatePath('/admin')
     try {
       const {username , email , password} = Object.fromEntries(data)
@@ -25,7 +25,6 @@ export async function addData(data) {
 
 // deletedata
 export async function deleteUser(userId : string) {
-    'use server'
      await prisma.user.delete({
         where : {
             id : userId
@@ -36,7 +35,6 @@ export async function deleteUser(userId : string) {
 
 // getdata
 export async function getData() {
-    'use server'
     try {
      const user = await prisma.user.findMany()
      return user
