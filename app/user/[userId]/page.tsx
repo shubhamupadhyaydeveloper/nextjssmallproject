@@ -1,5 +1,5 @@
 import React from 'react'
-import Backbutton from '@/components/Backbutton'
+import { Backbutton } from '@/components/button'
 interface Params {
   params: { userId: number }
 }

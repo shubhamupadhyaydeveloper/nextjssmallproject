@@ -14,4 +14,5 @@ const Backbutton = () => {
   )
 }
 
-export default Backbutton;
+
+export {Backbutton}
