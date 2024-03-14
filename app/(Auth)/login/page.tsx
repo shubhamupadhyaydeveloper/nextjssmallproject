@@ -1,9 +1,7 @@
-import { signIn,auth } from '@/lib/auth';
+import LoginForm from '@/components/LoginForm';
+import { signIn } from '@/lib/auth';
 
 const Loginpage = async () => {
-    const session = await auth()
-    console.log(session)
-
     const handleLogin = async () => {
         'use server'
         await signIn("github");
@@ -16,6 +14,7 @@ const Loginpage = async () => {
             <form action={handleLogin} className='mt-5'>
                 <button className='bg-black text-white p-2 rounded-sm'>Login with GitHub</button>
             </form>
+            <LoginForm />
         </div>
     );
 };

@@ -1,46 +1,21 @@
-'use server'
-import { revalidatePath } from "next/cache";
 import prisma from "./client";
 
-// add data
-// @ts-ignore
-export async function addData(data) {
-    revalidatePath('/admin')
-    try {
-      const {username , email , password} = Object.fromEntries(data)
-      const user = await prisma.user.create({
-        data : {
-            username : username,
-            email : email,
-            password : password,
-            isAdmin : false
+export const findUser = async (name : string) =>  {
+    const user = await prisma.user.findUnique({
+        where :{
+            username : name
         }
-      })
-      console.log(user)
-    } catch (error: unknown) {
-        console.log(error)
-        throw new Error(error as string)
-    }
+    })
+    return user
 }
 
-// deletedata
-export async function deleteUser(userId : string) {
-     await prisma.user.delete({
-        where : {
-            id : userId
-        }
-     })
-    return 'user deleted'
+export const createUser = async (username : string,password :string,email:string) => {
+  const user = await prisma.user.create({
+     data : {
+        username : username,
+        password : password,
+        email : email
+     }
+  })
+  return user
 }
-
-// getdata
-export async function getData() {
-    try {
-     const user = await prisma.user.findMany()
-     return user
-    } catch (error: unknown) {
-        console.log(error)
-        throw new Error(error as string)
-    }
-}
-
